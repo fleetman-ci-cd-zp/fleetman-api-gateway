@@ -26,7 +26,10 @@ pipeline {
       stage('Build and Push Image') {
          steps {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
-           sh 'docker login -u zpantskhava -p readBooks1'           
+            
+           withCredentials([usernamePassword(credentialsId: 'DockerHubCred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+           sh 'docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}'
+        }           
            sh 'docker push ${REPOSITORY_TAG}'
          }
       }
