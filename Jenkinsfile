@@ -26,6 +26,9 @@ pipeline {
       stage('Build and Push Image') {
          steps {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
+           sh 'docker login -u zpantskhava -p readBooks1'
+           sh 'docker tag zpantskhava/fleetman-ci-cd-zp-fleetman-api-gateway:10 ${REPOSITORY_TAG}'
+           sh 'docker push ${REPOSITORY_TAG}'
          }
       }
 
