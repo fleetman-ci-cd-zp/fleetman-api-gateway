@@ -18,8 +18,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
-        # Using this as a way to avoid having to bother pushing images to registry.
-        imagePullPolicy: Never
+        # Using this as a way to avoid having to bother pushing images to registry.       
         readinessProbe:
           httpGet:
             path: /
